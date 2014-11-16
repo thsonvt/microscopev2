@@ -36,7 +36,13 @@ Template.postSubmit.events({
 
             Router.go('postPage', {_id: result._id});
             // Router.go('postsList');
+        });
 
+        Meteor.call('post', post, function(error, id){
+            if (error){
+                // display the error to the user
+                Errors.throw(error.reason);
+            }
         });
 
         // post._id = Posts.insert(post);
