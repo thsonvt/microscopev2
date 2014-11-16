@@ -16,7 +16,8 @@ Template.postEdit.events({
 			// 	postExists: true,
 			// 	_id: postWithSameLink._id
 			// }
-        	alert('This link has already been posted');
+        	// alert('This link has already been posted');
+        	throwError('This link has already been posted!');
         	// Router.go('postPage', {_id: result._id});
             Router.go('postsList');
 		}
@@ -24,7 +25,8 @@ Template.postEdit.events({
 		Posts.update(currentPostid, {$set: postProperties}, function (error) {
 			if (error){
 				// display the error to the user
-				alert(error.reason);
+				// alert(error.reason);
+				throwError(error.reason);
 			}else{
 				Router.go('postPage', {_id: currentPostid});
 			}
