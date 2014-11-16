@@ -9,6 +9,18 @@ Template.postEdit.events({
 			title: $(e.target).find('[name=title]').val()
 		}
 
+		var postWithSameLink = Posts.findOne({url: postProperties.url});
+
+		if (postWithSameLink){
+			// return {
+			// 	postExists: true,
+			// 	_id: postWithSameLink._id
+			// }
+        	alert('This link has already been posted');
+        	// Router.go('postPage', {_id: result._id});
+            Router.go('postsList');
+		}
+
 		Posts.update(currentPostid, {$set: postProperties}, function (error) {
 			if (error){
 				// display the error to the user
